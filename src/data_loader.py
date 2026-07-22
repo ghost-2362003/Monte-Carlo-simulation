@@ -24,3 +24,6 @@ def validate_data(data):
         raise ValueError("One or more tickers contain only missing values.")
 
     return True
+
+def save_data(data, filename):
+    data.to_csv(filename)
