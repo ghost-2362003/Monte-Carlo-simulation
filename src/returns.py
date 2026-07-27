@@ -9,4 +9,3 @@ def calculate_simple_returns(ticker_data):
 
 def calculate_mean_returns(ticker_data):
     return ticker_data.pct_change().dropna().mean()
-
