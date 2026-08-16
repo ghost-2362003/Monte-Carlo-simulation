@@ -29,7 +29,7 @@ def simulate_market_crash(stock, start_date,
     
     data = load_data(path="/data")
     data.loc[data.index[-1], stock] = data.loc[data.index[-1], stock] * (1 - c)
-    log_returns = calculate_log_returns(data)
+    # log_returns = calculate_log_returns(data)
     S0 = data[stock].iloc[-1]
     
     mu = change_expected_return(mu, mu_factor)
