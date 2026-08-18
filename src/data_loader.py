@@ -1,5 +1,6 @@
 import yfinance as yf
 import pandas as pd
+from pathlib import Path
 
 def download_tickers(stocks, start_date):
     data = yf.download(stocks,
@@ -7,7 +8,8 @@ def download_tickers(stocks, start_date):
                    auto_adjust = True
                    )["Close"]
     
-    data.to_csv("/data")
+    # Path("data").mkdir(exist_ok=True)
+    data.to_csv("data/data.csv")
     
 def load_data(path):
     return pd.read_csv(path,

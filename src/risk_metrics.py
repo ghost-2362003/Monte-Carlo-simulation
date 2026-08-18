@@ -9,7 +9,7 @@ def calculate_var(returns, confidence=95):
     returns = np.asarray(returns, dtype=float)
     percentile = 100 - confidence
     
-    return np.percentile(returns)
+    return np.percentile(returns, percentile)
 
 def calculate_cvar(returns, confidence=95):
     
@@ -27,12 +27,15 @@ def probability_of_loss(returns):
     returns = np.asarray(returns, dtype=float)    
     return np.mean(returns < 0)
 
-def probability_of_loss_beyond_threshold(returns, threshold=0.1):
+def probability_of_loss_beyond_threshold(returns, threshold=0.01):
     
     returns = np.asarray(returns, dtype=float)
     return np.mean(returns < -threshold)
 
-def max_drawdown(portfolio_values):
+def max_drawdown(portfolio_values=None):
+    
+    if portfolio_values == None:
+        return None
     
     portfolio_values = np.asarray(portfolio_values, dtype=float)
     running_max = np.maximum.accumulate(portfolio_values)
@@ -40,15 +43,16 @@ def max_drawdown(portfolio_values):
 
     return drawdowns.min()
 
-def risk_report_summary(returns, portfolio_values=None, threshold=0.1, confidence=95):
+def risk_report_summary(returns, portfolio_values=None, threshold=0.0000001, confidence=95):
     
     
-    if portfolio_values != None:
+    ''' if portfolio_values != None:
         yield max_drawdown(portfolio_values)
-
+    '''
+    
     return {
-        "Value at Risk": calculate_var(returns, confidence),
-        "Expected Shortfall / conditional VaR": calculate_cvar(returns, confidence),
-        "Probability of Loss beyond threshold": probability_of_loss_beyond_threshold(returns, threshold),
+        "Value at Risk": round(float(calculate_var(returns, confidence)), 4),
+        "Expected Shortfall / conditional VaR": round(float(calculate_cvar(returns, confidence)), 4),
+        "Probability of Loss beyond threshold": round(float(probability_of_loss_beyond_threshold(returns, threshold)), 4),
         "Max Drawdown": max_drawdown() 
     }
