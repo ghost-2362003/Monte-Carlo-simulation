@@ -103,7 +103,7 @@ def simulate_correlated_paths(S0, mu, cov_matrix, days, simulations, dt=1/252, s
     drift = (mu - 0.5 * np.diag(cov_matrix)) * dt
 
     # Simulate day by day
-    for t in range(1, days + 1):
+    for t in range(1, days):
         # Independent standard normals: shape (simulations, n_assets)
         Z = np.random.normal(size=(simulations, n_assets))
 

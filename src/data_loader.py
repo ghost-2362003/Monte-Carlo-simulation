@@ -7,7 +7,6 @@ def download_tickers(stocks, start_date):
                    start = start_date,
                    auto_adjust = True
                    )["Close"]
-    
     # Path("data").mkdir(exist_ok=True)
     data.to_csv("data/data.csv")
     

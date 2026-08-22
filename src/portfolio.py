@@ -32,8 +32,12 @@ def calculate_portfolio_value_path(price_paths, weights, initial_value=100000):
     if price_paths.shape[2] != len(weights):
         raise ValueError("Number of weights must match number of assets.")
 
-    weighted_prices = price_paths @ weights
-    return weighted_prices
+    intial_prices = price_paths[0]
+    relative_prices = price_paths / intial_prices
+    weighted_prices = relative_prices @ weights
+    portfolio_values = initial_value * weighted_prices
+    
+    return portfolio_values
 
 
 def calculate_terminal_portfolio_values(portfolio_paths):
