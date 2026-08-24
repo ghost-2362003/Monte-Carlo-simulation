@@ -49,11 +49,6 @@ def main():
 
     cov_matrix = log_returns.cov().values * days
     
-    print("mu:", mu)
-    print("annual volatility:", np.sqrt(np.diag(cov_matrix)))
-    print("covariance matrix:")
-    print(cov_matrix)
-    
     # -------------------------
     # 4. Initial stock prices
     # -------------------------
@@ -72,11 +67,15 @@ def main():
         days,
         simulations
     )
+    
+    
+    '''
     print("paths shape:", paths.shape)
     print("paths min:", np.min(paths))
     print("paths max:", np.max(paths))
     print("paths first:", paths[0].shape)
     print("paths last:", paths[-1].shape)
+    '''
     
     # -------------------------
     # 6. Portfolio simulation
