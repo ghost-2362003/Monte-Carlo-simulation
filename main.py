@@ -4,10 +4,7 @@ from src.data_loader import (
     download_tickers,
     load_data
 )
-from src.returns import (
-    calculate_log_returns,
-    calculate_simple_returns
-)
+from src.returns import calculate_log_returns
 from src.monte_carlo import simulate_correlated_paths
 from src.portfolio import (
     calculate_portfolio_value_path,
@@ -27,7 +24,7 @@ def main():
     stocks = ["AAPL", "MSFT", "NVDA"]
     weights = np.array([0.4, 0.3, 0.3])
 
-    initial_capital = 1000000000
+    initial_capital = 10000000
 
     days = 252
     simulations = 10000
@@ -67,8 +64,6 @@ def main():
         days,
         simulations
     )
-    
-    
     '''
     print("paths shape:", paths.shape)
     print("paths min:", np.min(paths))
@@ -97,7 +92,7 @@ def main():
     
     print("Portfolio paths shape:", portfolio_paths.shape)
     print("Initial portfolio values:", portfolio_paths[0, :10])
-    print("Terminal values:", terminal_values[:10])
+    print("Terminal values:", terminal_values)
     # -------------------------
     # 8. Portfolio returns
     # -------------------------
@@ -129,9 +124,9 @@ def main():
 
     print("\n===== Portfolio Risk Analysis =====")
 
-    print(f"VaR (95%): {var:.2%}")
+    print(f"VaR (99%): {var:.2%}")
 
-    print(f"CVaR (95%): {cvar:.2%}")
+    print(f"CVaR (99%): {cvar:.2%}")
 
     print(
         f"Probability of Loss: "

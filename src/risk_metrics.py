@@ -1,6 +1,6 @@
 import numpy as np
 
-def calculate_var(returns, confidence=95):
+def calculate_var(returns, confidence=99):
     '''
     returns: returns on listed stocks
     confidence: confidence on the returns computed
@@ -11,7 +11,7 @@ def calculate_var(returns, confidence=95):
     
     return np.percentile(returns, percentile)
 
-def calculate_cvar(returns, confidence=95):
+def calculate_cvar(returns, confidence=99):
     
     returns = np.asarray(returns, dtype=float)
     var = calculate_var(returns, confidence)
