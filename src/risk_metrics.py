@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 
 def calculate_var(returns, confidence=95):
     '''
@@ -46,7 +47,8 @@ def max_drawdown(portfolio_values=None):
 def risk_report_summary(returns, portfolio_values=None, threshold=0.0000001, confidence=95):
     
     
-    ''' if portfolio_values != None:
+    ''' 
+    if portfolio_values != None:
         yield max_drawdown(portfolio_values)
     '''
     
@@ -56,3 +58,17 @@ def risk_report_summary(returns, portfolio_values=None, threshold=0.0000001, con
         "Probability of Loss beyond threshold": round(float(probability_of_loss_beyond_threshold(returns, threshold)), 4),
         "Max Drawdown": max_drawdown() 
     }
+
+def backtest_var(data,weights,
+                initial_capital=100000,
+                window=252,
+                test_size=None,
+                simulations=10000,
+                confidence=95):
+    
+    '''
+    data: The historical data of the stocks
+    intial_capital: The total amount invested
+    window: The training window of 
+    '''
+    
